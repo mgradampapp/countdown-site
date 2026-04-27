@@ -15,8 +15,11 @@
       justify-content: center;
       min-height: 100vh;
 
-      /* elegáns sötét háttér + narancs árnyalat */
-      background: linear-gradient(135deg, #111827, #1f2937);
+      /* elegáns narancs + sötét háttér */
+      background:
+        radial-gradient(circle at 30% 20%, rgba(249,115,22,0.25), transparent 40%),
+        radial-gradient(circle at 70% 80%, rgba(249,115,22,0.15), transparent 40%),
+        linear-gradient(135deg, #111827, #1f2937);
     }
 
     .box {
@@ -60,6 +63,9 @@
       font-weight: 600;
       display: block;
       letter-spacing: 1px;
+
+      /* finom narancs glow */
+      text-shadow: 0 0 8px rgba(249,115,22,0.5);
     }
 
     .label {
