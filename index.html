@@ -15,23 +15,20 @@
       justify-content: center;
       min-height: 100vh;
 
-      /* elegáns narancs + sötét háttér */
-      background:
-        radial-gradient(circle at 30% 20%, rgba(249,115,22,0.25), transparent 40%),
-        radial-gradient(circle at 70% 80%, rgba(249,115,22,0.15), transparent 40%),
-        linear-gradient(135deg, #111827, #1f2937);
+      /* 🔥 erős, de elegáns narancs háttér */
+      background: linear-gradient(135deg, #ea580c, #fb923c);
     }
 
     .box {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.25);
       padding: 40px 25px;
       border-radius: 20px;
-      backdrop-filter: blur(12px);
       max-width: 520px;
       width: 100%;
       text-align: center;
 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     }
 
     h2 {
@@ -39,7 +36,7 @@
       font-size: 20px;
       line-height: 1.4;
       margin-bottom: 30px;
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     .countdown {
@@ -50,7 +47,7 @@
     }
 
     .countdown div {
-      background: rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.35);
       padding: 18px 16px;
       border-radius: 14px;
       min-width: 75px;
@@ -64,13 +61,13 @@
       display: block;
       letter-spacing: 1px;
 
-      /* finom narancs glow */
-      text-shadow: 0 0 8px rgba(249,115,22,0.5);
+      /* ✨ enyhe glow */
+      text-shadow: 0 0 10px rgba(255,255,255,0.4);
     }
 
     .label {
       font-size: 11px;
-      opacity: 0.7;
+      opacity: 0.8;
       margin-top: 4px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -81,9 +78,9 @@
       transform: scale(1.12);
     }
 
-    /* utolsó 24 óra */
+    /* ⚠️ utolsó 24 óra */
     .urgent {
-      background: rgba(220, 38, 38, 0.8) !important;
+      background: rgba(153, 27, 27, 0.9) !important;
     }
 
     @media (max-width: 500px) {
