@@ -1,1 +1,50 @@
-# countdown-site
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Visszaszámláló</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #f5f5f5;
+      padding-top: 80px;
+    }
+    .box {
+      display: inline-block;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .timer {
+      font-size: 40px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Következő választásokig</h2>
+  <div class="timer" id="timer">betöltés...</div>
+</div>
+
+<script>
+  const target = new Date("2026-04-12T00:00:00");
+
+  function update() {
+    const now = new Date();
+    const diff = target - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    document.getElementById("timer").innerText = days + " nap";
+  }
+
+  setInterval(update, 1000);
+  update();
+</script>
+
+</body>
+</html>
