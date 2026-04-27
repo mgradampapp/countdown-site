@@ -25,10 +25,6 @@
       width: 100%;
     }
 
-    h2 {
-      margin: 10px 0;
-    }
-
     .countdown {
       display: flex;
       justify-content: center;
@@ -42,7 +38,7 @@
       padding: 15px;
       border-radius: 12px;
       min-width: 70px;
-      animation: pulse 2s infinite;
+      transition: transform 0.2s ease, background 0.3s;
     }
 
     .countdown span {
@@ -56,32 +52,14 @@
       opacity: 0.9;
     }
 
-    /* 💓 pulzáló animáció */
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 rgba(0,0,0,0.2);
-      }
-      50% {
-        transform: scale(1.08);
-        box-shadow: 0 0 20px rgba(0,0,0,0.4);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 rgba(0,0,0,0.2);
-      }
+    /* ✨ finom “pop” effekt */
+    .tick {
+      transform: scale(1.15);
     }
 
     /* ⚠️ utolsó 24 óra */
     .urgent {
       background: #dc2626 !important;
-      animation: pulseFast 1s infinite;
-    }
-
-    @keyframes pulseFast {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.12); }
-      100% { transform: scale(1); }
     }
 
     @media (max-width: 500px) {
@@ -97,10 +75,10 @@
   <h2>Újra a Fidesz nyer</h2>
 
   <div class="countdown" id="countdown">
-    <div><span id="days">0</span><div class="label">nap</div></div>
-    <div><span id="hours">0</span><div class="label">óra</div></div>
-    <div><span id="minutes">0</span><div class="label">perc</div></div>
-    <div><span id="seconds">0</span><div class="label">mp</div></div>
+    <div id="d"><span id="days">0</span><div class="label">nap</div></div>
+    <div id="h"><span id="hours">0</span><div class="label">óra</div></div>
+    <div id="m"><span id="minutes">0</span><div class="label">perc</div></div>
+    <div id="s"><span id="seconds">0</span><div class="label">mp</div></div>
   </div>
 
   <div id="message"></div>
@@ -109,28 +87,41 @@
 <script>
   const target = new Date("2030-04-14T23:59:00").getTime();
 
+  let last = { d: null, h: null, m: null, s: null };
+
+  function animate(id) {
+    const el = document.getElementById(id);
+    el.classList.add("tick");
+    setTimeout(() => el.classList.remove("tick"), 200);
+  }
+
   function update() {
     const now = new Date().getTime();
     const diff = target - now;
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
-    document.getElementById("seconds").innerText = seconds;
+    if (d !== last.d) animate("d");
+    if (h !== last.h) animate("h");
+    if (m !== last.m) animate("m");
+    if (s !== last.s) animate("s");
 
-    // ⚠️ utolsó 24 óra
+    last = { d, h, m, s };
+
+    document.getElementById("days").innerText = d;
+    document.getElementById("hours").innerText = h;
+    document.getElementById("minutes").innerText = m;
+    document.getElementById("seconds").innerText = s;
+
     if (diff < 1000 * 60 * 60 * 24) {
       document.querySelectorAll(".countdown div").forEach(el => {
         el.classList.add("urgent");
       });
     }
 
-    // 🎉 lejárt
     if (diff < 0) {
       document.getElementById("countdown").style.display = "none";
       document.getElementById("message").innerHTML = "<h2>🎉 ELINDULT! 🎉</h2>";
