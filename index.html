@@ -3,50 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <title>Visszaszámláló</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: Arial;
       text-align: center;
-      background: #0f172a;
+      background: #f97316;
       color: white;
-      padding-top: 80px;
+      margin: 0;
+      padding: 40px 10px;
     }
 
     .box {
       display: inline-block;
-      background: #1e293b;
-      padding: 30px;
+      background: rgba(255,255,255,0.1);
+      padding: 25px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h2 {
+      margin: 10px 0;
     }
 
     .countdown {
       display: flex;
-      gap: 15px;
       justify-content: center;
+      gap: 12px;
       margin-top: 20px;
+      flex-wrap: wrap;
     }
 
     .countdown div {
-      background: #334155;
+      background: rgba(0,0,0,0.2);
       padding: 15px;
-      border-radius: 10px;
+      border-radius: 12px;
       min-width: 70px;
+      animation: pulse 2s infinite;
     }
 
     .countdown span {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: bold;
       display: block;
     }
 
     .label {
       font-size: 12px;
-      opacity: 0.8;
+      opacity: 0.9;
     }
 
+    /* 💓 pulzáló animáció */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0,0,0,0.2);
+      }
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0,0,0,0.2);
+      }
+    }
+
+    /* ⚠️ utolsó 24 óra */
     .urgent {
       background: #dc2626 !important;
+      animation: pulseFast 1s infinite;
+    }
+
+    @keyframes pulseFast {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 500px) {
+      .countdown span {
+        font-size: 20px;
+      }
     }
   </style>
 </head>
@@ -82,14 +123,14 @@
     document.getElementById("minutes").innerText = minutes;
     document.getElementById("seconds").innerText = seconds;
 
-    // utolsó 24 óra
+    // ⚠️ utolsó 24 óra
     if (diff < 1000 * 60 * 60 * 24) {
       document.querySelectorAll(".countdown div").forEach(el => {
         el.classList.add("urgent");
       });
     }
 
-    // lejárt
+    // 🎉 lejárt
     if (diff < 0) {
       document.getElementById("countdown").style.display = "none";
       document.getElementById("message").innerHTML = "<h2>🎉 ELINDULT! 🎉</h2>";
