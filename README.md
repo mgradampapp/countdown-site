@@ -2,7 +2,7 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
-  <title>Visszaszámláló</title>
+  <title>Mikor lesz megint Fidesz</title>
   <style>
     body {
       font-family: Arial;
@@ -31,7 +31,7 @@
 </div>
 
 <script>
-  const target = new Date("2026-04-12T00:00:00");
+  const target = new Date("2030-04-14T23:59:00");
 
   function update() {
     const now = new Date();
