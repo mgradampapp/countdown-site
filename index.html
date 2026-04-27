@@ -72,7 +72,7 @@
 <body>
 
 <div class="box">
-  <h2>Meddig kell várni, hogy újra a békepárti Fidesz legyen hatalon</h2>
+  <h2>Meddig kell várni, hogy újra a békepárti Fidesz legyen hatalmon:</h2>
 
   <div class="countdown" id="countdown">
     <div id="d"><span id="days">0</span><div class="label">nap</div></div>
