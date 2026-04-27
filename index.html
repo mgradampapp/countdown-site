@@ -7,64 +7,90 @@
 
   <style>
     body {
-      font-family: Arial;
-      text-align: center;
-      background: #f97316;
-      color: white;
       margin: 0;
-      padding: 40px 10px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+
+      /* elegáns sötét háttér + narancs árnyalat */
+      background: linear-gradient(135deg, #111827, #1f2937);
     }
 
     .box {
-      display: inline-block;
-      background: rgba(255,255,255,0.1);
-      padding: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px 25px;
       border-radius: 20px;
-      backdrop-filter: blur(10px);
-      max-width: 500px;
+      backdrop-filter: blur(12px);
+      max-width: 520px;
       width: 100%;
+      text-align: center;
+
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    h2 {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 1.4;
+      margin-bottom: 30px;
+      opacity: 0.9;
     }
 
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      margin-top: 20px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .countdown div {
-      background: rgba(0,0,0,0.2);
-      padding: 15px;
-      border-radius: 12px;
-      min-width: 70px;
+      background: rgba(255,255,255,0.08);
+      padding: 18px 16px;
+      border-radius: 14px;
+      min-width: 75px;
+
       transition: transform 0.2s ease, background 0.3s;
     }
 
     .countdown span {
-      font-size: 26px;
-      font-weight: bold;
+      font-size: 28px;
+      font-weight: 600;
       display: block;
+      letter-spacing: 1px;
     }
 
     .label {
-      font-size: 12px;
-      opacity: 0.9;
+      font-size: 11px;
+      opacity: 0.7;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    /* ✨ finom “pop” effekt */
+    /* finom számváltás */
     .tick {
-      transform: scale(1.15);
+      transform: scale(1.12);
     }
 
-    /* ⚠️ utolsó 24 óra */
+    /* utolsó 24 óra */
     .urgent {
-      background: #dc2626 !important;
+      background: rgba(220, 38, 38, 0.8) !important;
     }
 
     @media (max-width: 500px) {
+      .box {
+        padding: 30px 15px;
+      }
+
       .countdown span {
-        font-size: 20px;
+        font-size: 22px;
+      }
+
+      h2 {
+        font-size: 18px;
       }
     }
   </style>
